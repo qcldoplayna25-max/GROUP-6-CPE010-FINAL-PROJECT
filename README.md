@@ -1,11 +1,11 @@
 # GROUP-6-CPE010-Employees Sales Performance Tracker
-GROUP 6 FINAL PROJECT
+ GROUP 6 FINAL PROJECT
 
 
-DSA BRANCHES USED:
-- Array
-- Bubble Sort
-- Linked List
-- Stack
-- Queue
-- Linear Search 
+ DSA BRANCHES USED:
+- ARRAY
+- BUBBLE SORT
+- LINKED LIST
+- STACK
+- QUEUE
+- LINEAR SEARCH 
