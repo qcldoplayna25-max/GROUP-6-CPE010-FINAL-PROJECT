@@ -1,5 +1,3 @@
-#ifndef SALESTRACKER_H
-#define SALESTRACKER_H
 
 #include <string>
 #include <vector>
@@ -24,11 +22,10 @@ struct Transaction {
 class SalesTracker {
 private:
     std::vector<Employee> employees;
-    std::queue<int> evaluationQueue;           // Queue for FIFO evaluation processing
-    std::stack<Transaction> undoStack;        // Stack for LIFO sales undo functionality
-    std::vector<Transaction> transactionHistory; // Chronological transaction log
+    std::queue<int> evaluationQueue;           
+    std::stack<Transaction> undoStack;        
+    std::vector<Transaction> transactionHistory; 
 
-    // Helper functions
     Employee* findEmployeeById(int id);
     bool employeeExists(int id);
 
@@ -46,5 +43,3 @@ public:
     void undoLastSale();
     void showSalesReport();
 };
-
-#endif // SALESTRACKER_H
