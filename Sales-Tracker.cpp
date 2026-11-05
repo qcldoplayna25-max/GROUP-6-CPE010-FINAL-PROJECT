@@ -7,7 +7,6 @@
 using namespace std;
 
 int SalesTracker::findEmployeeIndex(int id) const {
-    // LINEAR SEARCH: checks employee IDs one by one.
     for (int i = 0; i < employeeCount; ++i) {
         if (employees[i].id == id) {
             return i;
