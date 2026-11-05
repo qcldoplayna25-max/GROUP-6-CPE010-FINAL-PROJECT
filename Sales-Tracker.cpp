@@ -1,4 +1,4 @@
-#include "SalesTracker.h"
+#include "Salestracker.h"
 #include <iostream>
 #include <iomanip>
 #include <algorithm>
@@ -26,17 +26,23 @@ void SalesTracker::addEmployee() {
     cout << "\n--- ADD EMPLOYEE ---\n";
     cout << "Employee ID: ";
     cin >> e.id;
+    if (cin.fail()) {
+        cout << "Invalid ID. Please enter a number.\n";
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        return;
+    }
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
     if (findEmployeeIndex(e.id) != -1) {
         cout << "That employee ID already exists.\n";
         return;
     }
 
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
     cout << "Employee name: ";
     getline(cin, e.name);
-    cout << "Department: ";
-    getline(cin, e.department);
+    cout << "Position: ";
+    getline(cin, e.position);
 
     e.totalSales = 0.0;
     e.transactionCount = 0;
@@ -54,14 +60,14 @@ void SalesTracker::displayEmployees() const {
 
     cout << left << setw(12) << "ID"
          << setw(25) << "NAME"
-         << setw(20) << "DEPARTMENT"
+         << setw(20) << "POSITION"
          << right << setw(15) << "TOTAL SALES" << '\n';
     cout << string(72, '-') << '\n';
 
     for (int i = 0; i < employeeCount; ++i) {
         cout << left << setw(12) << employees[i].id
              << setw(25) << employees[i].name.substr(0, 23)
-             << setw(20) << employees[i].department.substr(0, 18)
+             << setw(20) << employees[i].position.substr(0, 18)
              << right << "PHP " << fixed << setprecision(2)
              << employees[i].totalSales << '\n';
     }
@@ -121,7 +127,7 @@ void SalesTracker::searchEmployee() const {
     cout << "\nEmployee found!\n";
     cout << "ID: " << e.id << '\n';
     cout << "Name: " << e.name << '\n';
-    cout << "Department: " << e.department << '\n';
+    cout << "Position: " << e.position << '\n';
     cout << "Total sales: PHP " << fixed << setprecision(2) << e.totalSales << '\n';
     cout << "Number of transactions: " << e.transactionCount << '\n';
 }
