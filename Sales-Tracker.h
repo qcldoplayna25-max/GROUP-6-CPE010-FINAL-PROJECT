@@ -22,6 +22,8 @@ private:
     std::stack<SaleTransaction> undoStack;
 
     int findEmployeeIndex(int id) const;
+    void mergeSortEmployees(int left, int right);
+    void mergeEmployees(int left, int mid, int right);
 
 public:
     void addEmployee();
@@ -29,6 +31,7 @@ public:
     void recordSale();
     void searchEmployee() const;
     void rankEmployees();
+    void countEmployeesMeetingQuota();
     void addToEvaluationQueue();
     void processEvaluation();
     void showTransactionHistory() const;
