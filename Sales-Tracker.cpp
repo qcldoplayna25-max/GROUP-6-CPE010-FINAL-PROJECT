@@ -132,20 +132,53 @@ void SalesTracker::searchEmployee() const {
     cout << "Number of transactions: " << e.transactionCount << '\n';
 }
 
+void SalesTracker::mergeEmployees(int left, int mid, int right) {
+    array<Employee, MAX_EMPLOYEES> temp;
+
+    int i = left;
+    int j = mid + 1;
+    int k = left;
+
+    while (i <= mid && j <= right) {
+        if (employees[i].totalSales >= employees[j].totalSales) {
+            temp[k++] = employees[i++];
+        } else {
+            temp[k++] = employees[j++];
+        }
+    }
+
+    while (i <= mid) {
+        temp[k++] = employees[i++];
+    }
+
+    while (j <= right) {
+        temp[k++] = employees[j++];
+    }
+
+    for (int x = left; x <= right; x++) {
+        employees[x] = temp[x];
+    }
+}
+void SalesTracker::mergeSortEmployees(int left, int right) {
+    if (left >= right) {
+        return;
+    }
+
+    int mid = left + (right - left) / 2;
+
+    mergeSortEmployees(left, mid);
+    mergeSortEmployees(mid + 1, right);
+
+    mergeEmployees(left, mid, right);
+}
+
 void SalesTracker::rankEmployees() {
     if (employeeCount == 0) {
         cout << "\nNo employees to rank.\n";
         return;
     }
 
-    // BUBBLE SORT: orders employees from highest to lowest total sales.
-    for (int i = 0; i < employeeCount - 1; ++i) {
-        for (int j = 0; j < employeeCount - i - 1; ++j) {
-            if (employees[j].totalSales < employees[j + 1].totalSales) {
-                swap(employees[j], employees[j + 1]);
-            }
-        }
-    }
+     mergeSortEmployees(0, employeeCount - 1);
 
     cout << "\n--- SALES PERFORMANCE RANKING ---\n";
     for (int i = 0; i < employeeCount; ++i) {
@@ -156,6 +189,52 @@ void SalesTracker::rankEmployees() {
 }
 
 void SalesTracker::addToEvaluationQueue() {
+    void SalesTracker::countEmployeesMeetingQuota() {
+    if (employeeCount == 0) {
+        cout << "\nNo employees available.\n";
+        return;
+    }
+
+    double quota;
+
+    cout << "\n--- SALES QUOTA ANALYSIS ---\n";
+    cout << "Enter sales quota (PHP): ";
+    cin >> quota;
+
+    if (cin.fail() || quota < 0) {
+        cout << "Invalid quota.\n";
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        return;
+    }
+
+    // Sort employees by total sales in descending order.
+    mergeSortEmployees(0, employeeCount - 1);
+
+    // BINARY SEARCH: find the number of employees
+    // whose total sales are greater than or equal to the quota.
+    int low = 0;
+    int high = employeeCount;
+
+    while (low < high) {
+        int mid = low + (high - low) / 2;
+
+        if (employees[mid].totalSales >= quota) {
+            low = mid + 1;
+        } else {
+            high = mid;
+        }
+    }
+
+    cout << "\nSales Quota: PHP " << fixed
+         << setprecision(2) << quota << '\n';
+
+    cout << "Employees meeting quota: "
+         << low << " out of " << employeeCount << '\n';
+
+    cout << "Employees below quota: "
+         << employeeCount - low << '\n';
+}
     int id;
     cout << "\n--- ADD EMPLOYEE TO EVALUATION QUEUE ---\n";
     cout << "Employee ID: ";
