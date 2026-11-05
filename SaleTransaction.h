@@ -47,4 +47,4 @@ public:
     }
 };
 
-#endif // SALE_TRANSACTION_H
+#endif 
