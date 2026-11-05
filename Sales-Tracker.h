@@ -1,7 +1,7 @@
 #ifndef SALES_TRACKER_H
 #define SALES_TRACKER_H
 
-#include "Employee.h"
+#include "employe.h"
 #include <array>
 #include <queue>
 #include <list>
@@ -16,9 +16,7 @@ private:
     int employeeCount = 0;
 
     std::queue<int> evaluationQueue;
-
     std::list<SaleTransaction> transactionHistory;
-
     std::stack<SaleTransaction> undoStack;
 
     int findEmployeeIndex(int id) const;
