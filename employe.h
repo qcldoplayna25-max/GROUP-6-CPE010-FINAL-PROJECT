@@ -15,7 +15,7 @@ private:
 
 public:
     
-    Employee() : id(0), name(""), department(""), totalSales(0.0), transactionCount(0) {}
+    Employee() : id(0), name(""), position(""), totalSales(0.0), transactionCount(0) {}
 
     
     Employee(int id, const std::string& name, const std::string& position)
@@ -24,7 +24,7 @@ public:
     
     int getId() const { return id; }
     const std::string& getName() const { return name; }
-    const std::string& getDepartment() const { return department; }
+    const std::string& getPosition() const { return position; }
     double getTotalSales() const { return totalSales; }
     int getTransactionCount() const { return transactionCount; }
 
@@ -33,8 +33,6 @@ public:
         return transactionCount > 0 ? totalSales / transactionCount : 0.0;
     }
 
-    
-    
     friend class SalesTracker;
 };
 
