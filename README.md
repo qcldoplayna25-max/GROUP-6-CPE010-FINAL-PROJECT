@@ -3,6 +3,7 @@
 GROUP 6 FINAL PROJECT
 
 Group Members:
+
 Almirol, Joel
 
 Doplayna, Clifford Lee C.
