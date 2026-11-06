@@ -4,8 +4,11 @@ GROUP 6 FINAL PROJECT
 
 Group Members:
 Almirol, Joel
+
 Doplayna, Clifford Lee C.
+
 Licas, Rayven Ferry
+
 Ines, Djay
 
 ## Project Description
